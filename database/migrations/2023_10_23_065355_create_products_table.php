@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("brand");
-            $table->text("description")->default('')->nullable();
-            $table->text("description_long")->default('')->nullable();
+            $table->text("description")->nullable();
+            $table->text("description_long")->nullable();
             $table->decimal("price");
             $table->decimal("stock")->nullable();
             $table->integer('rating')->nullable();
