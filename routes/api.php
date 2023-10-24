@@ -35,7 +35,7 @@ Route::get("/categories", [ProductController::class, "getCategories"]);
 Route::get("/products/filter", [ProductController::class, "getFilteredProducts"]);
 Route::get("/products/{id}", [ProductController::class, "productPage"]);
 
-Route::group(["middleware" => ["auth:sanctum"]], function() {
+Route::group(["middleware" => ["auth:sanctum", 'cors']], function() {
 
   //Cart
   Route::get("/cart", [CartController::class, "index"]);
