@@ -18,7 +18,8 @@ class Product extends Model
         "category_id",
         "rating",
         "description_long",
-        "stock"
+        "stock",
+        "image"
         
     ];
 

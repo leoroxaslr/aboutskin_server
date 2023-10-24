@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -61,13 +62,48 @@ class ProductController extends Controller
         return $product;
     }
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'price' => 'required'
+{
+    $request->validate([
+        'name' => 'required',
+        'brand' => 'required',
+        'price' => 'required',
+    ]);
 
-        ]);
-        return Product::create($request->all());
+
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+       
+    } else {
+ 
+        if ($request->hasFile('image')) {
+            \Log::error('File upload error: ' . $request->file('image')->getErrorMessage());
+        } else {
+            \Log::error('No file uploaded with the name "image"');
+        }
     }
+    
+    $imagePath = '';
+
+if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imagePath = $image->store('images', 'public');
+}
+
+
+    $product = new Product([
+        'name' => $request->input('name'),
+        'brand' => $request->input('brand'),
+        'price' => $request->input('price'),
+        'stock' => $request->input('stock'),
+        'description' => $request->input('description'),
+        'description_long' => $request->input('description_long'),
+        'category_id' => $request->input('category_id'),
+        'image' => $imagePath,
+    ]);
+
+    $product->save();
+
+    return response()->json(['message' => 'Product created'], 201);
+}
+
+
 }

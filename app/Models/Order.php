@@ -12,11 +12,22 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         "user_id",
-        "cart_id",
+        "product_id",
+        "quantity", 
         "status",
         "payment_type",
         "total",
-        "order_id"
+        "order_id",
+        'weight',
+        'length',
+        'width',
+        'height',
+        'item_type',
+        'phone_number',
+        'postal_code',
+        'customer_name',
+        'customer_order_number',
+    
     ];
     protected $casts = [
         "created_at" => "date:Y-m-d H:i:s"

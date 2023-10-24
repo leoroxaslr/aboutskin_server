@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("brand");
-            $table->text("description");
-            $table->text("description_long");
+            $table->text("description")->default('')->nullable();
+            $table->text("description_long")->default('')->nullable();
             $table->decimal("price");
-            $table->decimal("stock");
-            $table->decimal("rating");
+            $table->decimal("stock")->nullable();
+            $table->integer('rating')->nullable();
             $table->unsignedBigInteger("category_id")->index();
-            $table->string("image");
+            $table->string('image')->default('')->nullable();
             $table->timestamps();
         });
     }

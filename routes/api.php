@@ -25,7 +25,7 @@ Route::post("/register", [AuthController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 
 //images
-Route::get('/image/{filename}', [ProfilePictureController::class, 'getImage']);
+Route::get('/public/images/{filename}', [ProfilePictureController::class, 'getImage']);
 Route::post('/upload', [ProfilePictureController::class, 'upload']);
 
 //Public routes
@@ -46,6 +46,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
 
   //Order
   Route::get("/orders", [OrderController::class, "getOrders"]);
+  Route::get("/allorder", [OrderController::class, "getOrdersAdmin"]);
   Route::get("/order/{id}", [OrderController::class, "getOrderItems"]);
   Route::post("/order", [OrderController::class, "placeOrder"]);
 
@@ -54,5 +55,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
   Route::put('/products/{id}',[ProductController::class, 'update']);
   Route::post('/products',[ProductController::class, 'store']);
 
+  //logout
   Route::post("/logout", [AuthController::class, "logout"]);
 });

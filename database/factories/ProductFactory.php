@@ -32,7 +32,7 @@ class ProductFactory extends Factory
             "stock" => fake()->randomNumber(3),
             "rating" => fake()->numberBetween(1,5),
             "category_id" => fake()->randomElement(Category::pluck("id")),
-            'image' => $this->faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg')
+            'image' => $this->faker->imageUrl(360, 360,)
 
         ];
     }
