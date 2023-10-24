@@ -17,7 +17,7 @@ class OrderController extends Controller
         $carts = Cart::where("user_id", auth()->user()->id)->get();
         $orders = [];
         $status = $request->payment_type === "Debit/Credit Card" ? "Pending" : "For Packaging";
-        $totalPrice = 0; // Initialize the total price variable.
+        $totalPrice = 0; 
 
         foreach ($carts as $item) {
             array_push($orders, [
@@ -36,7 +36,7 @@ class OrderController extends Controller
                 "phone_number" => auth()->user()->phone_num,
                 "postal_code" => auth()->user()->postal,
                 "address" => auth()->user()->address,
-                "customer_name" => auth()->user()->username,
+                "customer_name" => auth()->user()->first_name . " " .  auth()->user()->last_name,
                 "customer_order_number" => "Your Order Number", 
                 "created_at" => Carbon::now()->toDateTimeString(),
                 "updated_at" => Carbon::now()->toDateTimeString(),

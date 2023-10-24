@@ -17,6 +17,7 @@ class Order extends Model
         "status",
         "payment_type",
         "total",
+        "total_price",
         "order_id",
         'weight',
         'length',
