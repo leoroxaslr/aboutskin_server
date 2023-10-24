@@ -59,15 +59,22 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->update($request->all());
-        return $product;
+    
+        return new ProductResource($product);
     }
     public function store(Request $request)
 {
     $request->validate([
-        'name' => 'required',
-        'brand' => 'required',
-        'price' => 'required',
+        'name' => 'required|string',
+        'brand' => 'required|string',
+        'price' => 'required|numeric',
+        'stock' => 'nullable|integer',
+        'description' => 'nullable|string',
+        'description_long' => 'nullable|string',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:9048', 
     ]);
+    
 
 
     if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -75,9 +82,9 @@ class ProductController extends Controller
     } else {
  
         if ($request->hasFile('image')) {
-            \Log::error('File upload error: ' . $request->file('image')->getErrorMessage());
+            Log::error('File upload error: ' . $request->file('image')->getErrorMessage());
         } else {
-            \Log::error('No file uploaded with the name "image"');
+            Log::error('No file uploaded with the name "image"');
         }
     }
     
