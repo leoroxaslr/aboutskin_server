@@ -13,6 +13,32 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(4)->create();
+        Category::create([
+            'name' => 'Soap',
+        ]);
+
+        Category::create([
+            'name' => 'Facial Wash',
+        ]);
+
+        Category::create([
+            'name' => 'Topical Cream',
+        ]);
+
+        Category::create([
+            'name' => 'Topical Gel',
+        ]);
+
+        Category::create([
+            'name' => 'Lotion',
+        ]);
+
+        Category::create([
+            'name' => 'Cream',
+        ]);
+
+        Category::create([
+            'name' => 'Anti Acne',
+        ]);
     }
 }
