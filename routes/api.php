@@ -54,9 +54,6 @@ Route::group(["middleware" => ["auth:sanctum", 'cors']], function() {
   Route::delete('/products/{id}',[ProductController::class, 'destroy']);
   Route::put('/products/{id}',[ProductController::class, 'update']);
   Route::post('/products',[ProductController::class, 'store']);
-
-  //category
-  Route::post('/products',[ProductController::class, 'store']);
   
   //logout
   Route::post("/logout", [AuthController::class, "logout"]);
