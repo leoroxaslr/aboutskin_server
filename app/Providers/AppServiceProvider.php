@@ -2,23 +2,26 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
+    /**
+     * Register any application services.
+     */
+    public function register(): void
     {
-
-         if (!$this->app->environment('production')) {
-             $this->app->register('App\Providers\FakerServiceProvider');
-         }
+        //
     }
 
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
-        //
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
     }
 }
