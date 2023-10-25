@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text("description_long")->nullable();
             $table->decimal("price");
             $table->decimal("stock")->nullable();
-            $table->integer('rating')->nullable();
+            $table->integer('rating')->default(5)->nullable();
             $table->unsignedBigInteger("category_id")->index();
             $table->string('image')->default('')->nullable();
             $table->timestamps();
